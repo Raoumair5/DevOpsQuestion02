@@ -1,5 +1,10 @@
-# test.sh
-#!/bin/bash
-echo "Running basic tests..."
-echo "Checking if the website folder exists..."
-ls ./website > /dev/null 2>&1 && echo "Website folder exists!" || echo "Website folder not found!"
+@echo off
+echo Running basic tests for static website...
+echo Checking if index.html exists...
+if exist index.html (
+    echo index.html exists!
+) else (
+    echo ERROR: index.html does not exist!
+    exit /b 1
+)
+echo tests completed successfully!
