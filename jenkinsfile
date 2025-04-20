@@ -9,15 +9,6 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                // Use bat to run commands compatible with Windows
-                bat 'npm install'
-                // For Python projects, use:
-                // bat 'pip install -r requirements.txt'
-            }
-        }
-
         stage('Run Tests') {
             steps {
                 // Execute test script using cmd
@@ -27,14 +18,14 @@ pipeline {
 
         stage('Archive Artifacts') {
             steps {
-                archiveArtifacts artifacts: 'website/**/*', excludes: '*.git*'
+                archiveArtifacts artifacts: '**/*.html, **/*.css, **/*.js', excludes: '*.git*'
             }
         }
     }
 
     post {
         success {
-            echo 'Build successful! Artifacts have been archived.'
+            echo 'Build successful! All artifacts have been archived.'
         }
         failure {
             echo 'Build failed. Check the console output for errors.'
