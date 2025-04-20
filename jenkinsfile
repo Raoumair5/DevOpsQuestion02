@@ -11,14 +11,17 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                sh 'pip install --user --upgrade pip'
-                sh 'pip install --user -r requirements.txt'
+                // Use bat to run commands compatible with Windows
+                bat 'npm install'
+                // For Python projects, use:
+                // bat 'pip install -r requirements.txt'
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh './test.sh'  // Run your test script
+                // Execute test script using cmd
+                bat 'test.bat'
             }
         }
 
